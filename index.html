@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>Para Minha Xuxu ❤️</title>
+        <title>Site - Estrutura Base</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -11,6 +11,7 @@
             rel="stylesheet"
         />
 
+        <!-- CSS básico embutido -->
         <style>
             :root {
                 --bg: #212529;
@@ -22,13 +23,16 @@
                 --max-width: 1100px;
             }
 
+            /* Adicionando nova fonte para a carta */
             @font-face {
                 font-family: 'Tangerine';
                 font-style: normal;
                 font-weight: 700;
                 src: url(https://fonts.gstatic.com/s/tangerine/v17/IurY6Y5j_oScZZow4VOxCZZM.woff2) format('woff2');
+                unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
             }
 
+            /* Reset simples */
             * {
                 box-sizing: border-box;
                 margin: 0;
@@ -37,30 +41,49 @@
                 font-weight: 400;
                 font-style: normal;
             }
-            html, body { height: 100%; }
+            html,
             body {
-                font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+                height: 100%;
+            }
+            body {
+                font-family: system-ui, -apple-system, "Segoe UI", Roboto,
+                    "Helvetica Neue", Arial;
+                /* Cor de fundo base (cinza escuro) */
                 background-color: var(--bg);
-                /* Padrão de corações */
+                /* Padrão de corações SVG repetido */
                 background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ff6b6b' opacity='0.08' d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
                 color: var(--text);
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
                 line-height: 1.5;
                 padding: 24px;
-                overflow-x: hidden;
+                padding-bottom: 200px; /* Adicionado espaço extra para o player não cobrir o final */
+                overflow-x: hidden; /* Evita rolagem lateral */
             }
 
-            .container { max-width: var(--max-width); margin: 0 auto; }
+            .container {
+                max-width: var(--max-width);
+                margin: 0 auto;
+                background: transparent;
+            }
+
             header {
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 gap: 16px;
                 min-height: 90vh; 
+                margin-top: 0;
+                margin-bottom: 0;
                 flex-direction: column;
             }
-            /* Ajuste de tamanho do H1 */
-            h1 { color: #be4bdb; font-size: 1.8rem; text-align: center; }
+            h1 {
+                color: #be4bdb;
+                font-size: 2rem;
+                text-align: center;
+            }
 
+            /* Slide section */
             .slider {
                 position: relative;
                 width: 100%;
@@ -72,15 +95,18 @@
                 border-radius: 10px;
                 background-color: #333; 
             }
+
             .slider img {
                 position: absolute;
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
                 opacity: 0;
+                /* AJUSTE: Animação agora dura 20s (4s x 5 imagens) */
                 animation: fade 20s infinite;
             }
-            /* Tempos para 5 imagens */
+
+            /* AJUSTE: Tempos recalculados para 5 imagens */
             .slider img:nth-child(1) { animation-delay: 0s; }
             .slider img:nth-child(2) { animation-delay: 4s; }
             .slider img:nth-child(3) { animation-delay: 8s; }
@@ -95,55 +121,89 @@
                 100% { opacity: 0; }
             }
 
-            .message-box { margin-top: 40px; display: flex; flex-direction: column; gap: 10vh; align-items: center; }
-            
-            /* Texto geral ajustado para Mobile */
-            p { 
-                font-size: 1.3rem; 
-                color: #3bc9db; 
-                text-align: center; 
-                line-height: 1.6; 
+            .message-box {
+                margin-top: 40px;
+                display: flex;
+                flex-direction: column; 
+                gap: 10vh; 
+                align-items: center; 
+            }
+
+            p {
+                font-size: 24px;
+                color: #3bc9db;
+                text-align: center;
+                line-height: 1.8; 
                 width: 100%; 
                 max-width: 800px; 
             }
-            
-            .text-img { width: 100%; max-width: 600px; height: auto; display: block; margin: 50vh auto; border-radius: 10px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
 
-            .love-letter-section { display: flex; flex-direction: column; gap: 0; }
-            .text-slide { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; opacity: 0.9; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
-            
-            /* Texto da Carta (Fonte Tangerine precisa ser maiorzinha, mas não gigante) */
-            .text-slide p { 
-                color: #e9ecef; 
-                font-family: 'Tangerine', cursive; 
-                font-size: 2.8rem; 
-                margin: 0; 
-                line-height: 1.2;
+            .text-img {
+                width: 100%;           
+                max-width: 600px;      
+                height: auto;          
+                display: block;        
+                margin: 50vh auto; 
+                border-radius: 10px;   
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
             }
 
-            /* Imagem de Fundo do Final Corrigida */
+            /* --- ESTILO PARA A CARTA DE AMOR --- */
+            .love-letter-section {
+                display: flex;
+                flex-direction: column;
+                gap: 0; 
+            }
+
+            .text-slide {
+                min-height: 100vh; 
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+                opacity: 0.9;
+                text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            }
+
+            .text-slide p {
+                color: #e9ecef; 
+                font-family: 'Tangerine', cursive; /* Usando a nova fonte */
+                font-size: 3rem; /* Aumentando o tamanho da fonte */
+                margin: 0;
+            }
+
+            /* Estilo especial para o final */
             .grand-finale {
                 text-align: center;
-                /* Nome exato conforme sua foto do GitHub */
+                /* Adicionando a imagem de fundo */
                 background-image: url('WhatsApp Image 2025-12-01 at 18.20.53.jpeg');
                 background-size: cover;
                 background-position: center;
-                box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.6);
+                /* Adicionando uma sobreposição escura para melhorar a legibilidade do texto */
+                box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
             }
-            .grand-finale h2 { 
-                font-family: 'Tangerine', cursive; 
-                font-size: 3.5rem; 
-                color: #ff6b6b; 
-                margin-bottom: 20px; 
-                animation: pulse 2s infinite; 
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); 
+            .grand-finale h2 {
+                font-family: 'Tangerine', cursive; /* Usando a nova fonte */
+                font-size: 5rem; /* Aumentando o tamanho da fonte */
+                color: #ff6b6b;
+                margin-bottom: 20px;
+                animation: pulse 2s infinite;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Adicionando sombra ao texto */
             }
-            .grand-finale .date { font-family: 'Pacifico', cursive; font-size: 1.4rem; color: #ffd43b; display: block; margin-bottom: 30px; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); }
-            .grand-finale p { 
-                font-family: 'Tangerine', cursive; 
-                font-size: 3rem; 
-                color: #ffffff; 
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); 
+            .grand-finale .date {
+                font-family: 'Pacifico', cursive;
+                font-size: 1.5rem;
+                color: #ffd43b;
+                display: block;
+                margin-bottom: 30px;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+            }
+            .grand-finale p {
+                font-family: 'Tangerine', cursive; /* Usando a nova fonte */
+                font-size: 3.5rem; /* Aumentando o tamanho da fonte */
+                color: #ffffff;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Adicionando sombra ao texto */
             }
 
             @keyframes pulse {
@@ -152,17 +212,45 @@
                 100% { transform: scale(1); }
             }
 
-            .music-player { position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: rgba(255, 255, 255, 0.9); border-radius: 30px; padding: 10px 15px; border: 2px solid #be4bdb; display: flex; flex-direction: column; align-items: center; gap: 5px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-            .play-btn { background: #be4bdb; color: white; border: none; padding: 5px 10px; border-radius: 15px; cursor: pointer; margin-top: 5px; }
-
-            /* Ajustes Específicos para Celulares Pequenos */
-            @media (max-width: 600px) {
-                h1 { font-size: 1.6rem; }
-                p { font-size: 1.1rem; } /* Texto padrão mais confortável */
-                .text-slide p { font-size: 2.4rem; } /* Carta legível mas sem estourar */
-                .grand-finale h2 { font-size: 3rem; }
-                .grand-finale p { font-size: 2.4rem; }
-                .music-player { right: 10px; bottom: 10px; transform: scale(0.9); transform-origin: bottom right; }
+            /* Player de música flutuante */
+            .music-player {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1000;
+                background: rgba(255, 255, 255, 0.9);
+                border-radius: 30px;
+                padding: 10px 15px;
+                backdrop-filter: blur(5px);
+                border: 2px solid #be4bdb;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            }
+            audio {
+                height: 30px;
+                max-width: 250px;
+            }
+            .error-msg {
+                color: red;
+                font-size: 12px;
+                font-family: sans-serif;
+                display: none;
+                max-width: 200px;
+                text-align: center;
+            }
+            .play-btn {
+                background: #be4bdb;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 15px;
+                cursor: pointer;
+                font-size: 12px;
+                font-family: sans-serif;
+                margin-top: 5px;
             }
         </style>
     </head>
@@ -170,64 +258,152 @@
         <div class="container">
             <header>
                 <div>
-                    <h1>Feliz Aniversário <br /><span>&#127874;</span>Minha Xuxu!!!<span>&#127881;</span></h1>
+                    <h1>
+                        Feliz Aniversário <br />
+                        <span>&#127874;</span>Minha Xuxu!!!<span>&#127881;</span>
+                    </h1>
                 </div>
             </header>
 
             <main>
                 <div class="slider">
-                    <!-- Ordem corrigida conforme seus arquivos -->
-                    <img src="image-1.jpeg" alt="Foto 1" onerror="this.style.display='none'" />
-                    <img src="image-3.jpeg" alt="Foto 3" onerror="this.style.display='none'" />
-                    <img src="image-4.jpeg" alt="Foto 4" onerror="this.style.display='none'" />
-                    <img src="image-5.jpeg" alt="Foto 5" onerror="this.style.display='none'" />
-                    <img src="image-6.jpeg" alt="Foto 6" onerror="this.style.display='none'" />
+                    <!-- AJUSTE: Removida a image-2.jpeg. Restaram 5 imagens. -->
+                    <img src="image-1.jpeg" alt="Foto 1" onerror="this.src='https://placehold.co/600x400/222/be4bdb?text=Foto+1'" />
+                    <!-- image-2 removida daqui -->
+                    <img src="image-3.jpeg" alt="Foto 3" onerror="this.src='https://placehold.co/600x400/222/be4bdb?text=Foto+3'" />
+                    <img src="image-4.jpeg" alt="Foto 4" onerror="this.src='https://placehold.co/600x400/222/be4bdb?text=Foto+4'" />
+                    <img src="image-5.jpeg" alt="Foto 5" onerror="this.src='https://placehold.co/600x400/222/be4bdb?text=Foto+5'" />
+                    <img src="image-6.jpeg" alt="Foto 6" onerror="this.src='https://placehold.co/600x400/222/be4bdb?text=Foto+6'" />
                 </div>
 
                 <div class="message-box">
                     <div>
-                        <p>Uma história que começou em um lugar não muito normal:</p>
-                        <!-- CORRIGIDO: Agora usa .webp conforme seu GitHub -->
-                        <img class="text-img" src="tiktok.webp" alt="tiktok" />
+                        <p>
+                            Uma história que começou em um lugar não muito normal:
+                        </p>
+                        <img class="text-img" src="tiktok.jpeg" alt="tiktok" onerror="this.src='https://placehold.co/600x300/black/white?text=TikTok'" />
                     </div>
                     
                     <div>
-                        <p>de uma maneira um tanto quanto diferente:</p>
-                        <!-- CORRIGIDO: Nome exato com extensão dupla -->
-                        <img class="text-img" src="print-whats.jpeg.jpeg" alt="Print da conversa" />
+                        <p>
+                            de uma maneira um tanto quanto diferente:
+                        </p>
+                        <img class="text-img" src="print-whats.jpeg.jpeg" alt="Print da conversa" onerror="this.src='https://placehold.co/600x300/black/white?text=Print+Conversa'" />
                     </div>
 
                     <div>
-                        <p>Lamento pela demora do seu presente, realmente queria que fosse algo mais rápido mas acabei me perdendo no caminho:</p>
-                        <img class="text-img" src="gato.jpg" alt="gato" />
+                        <p>
+                            Lamento pela demora do seu presente, realmente queria que fosse algo
+                            mais rápido mas acabei me perdendo no caminho:
+                        </p>
+                        <img class="text-img" src="gato.jpg" alt="gato" onerror="this.src='https://placehold.co/600x300/black/white?text=Gato'" />
                     </div>
                 </div>
 
+                <!-- SEÇÃO: LOVE LETTER -->
                 <div class="love-letter-section">
-                    <div class="text-slide"><p>Oi meu amor, vou te contar uma outra historinha...<br>Dessa vez sobre seu namorado.</p></div>
-                    <div class="text-slide"><p>Ele passou um bom tempo da vida dele sozinho, principalmente depois do último namoro dele...</p></div>
-                    <div class="text-slide"><p>Até você chegar...</p></div>
-                    <div class="text-slide"><p>Sua existência na minha vida fez todo o caminho mudar.</p></div>
-                    <div class="text-slide"><p>O simples fato de você existir faz minha vida melhor e completa.</p></div>
-                    <div class="text-slide"><p>Eu te amo mais do que tudo nesse mundo.</p></div>
+                    <div class="text-slide">
+                        <p>
+                            Oi meu amor, vou te contar uma outra historinha...<br>
+                            Dessa vez sobre seu namorado.
+                        </p>
+                    </div>
+
+                    <div class="text-slide">
+                        <p>
+                            Ele passou um bom tempo da vida dele sozinho.
+                        </p>
+                    </div>
+
+                    <div class="text-slide">
+                        <p>
+                            Passei dois anos da minha vida sentindo que iria morrer sozinho, afinal eu nunca tinha conhecido ninguém parecido comigo ou que houvesse alguma ligação que eu sentisse que era recíproca... <br><br>
+                            Até você chegar...
+                        </p>
+                    </div>
+
+                    <div class="text-slide">
+                        <p>
+                            Sua existência na minha vida fez todo o caminho mudar. Eu não tinha esperanças nem gostava de viver tanto assim. Acho que alguém se preocupar comigo nunca foi tão real e diferente no meu coração.
+                        </p>
+                    </div>
+
+                    <div class="text-slide">
+                        <p>
+                            É por você que tudo é possível e capaz de ser feito. É de onde tiro forças pra tentar de novo, e de novo, e de novo.<br><br>
+                            Pela maneira como você é, não como age e nem como me trata. O simples fato de você existir faz minha vida melhor e completa.
+                        </p>
+                    </div>
+
+                    <div class="text-slide">
+                        <p>
+                            Por isso, mesmo em meio a toda briga ou coisa que dê errado, não deixo de persistir e ser uma pessoa melhor e mais capaz. Pois reconheço seu valor.
+                        </p>
+                    </div>
+
+                    <div class="text-slide">
+                        <p>
+                            Eu te amo mais do que tudo nesse mundo. Sei que às vezes tropeço por coisas que eram para ser simples, que eu deveria fazer e te magoam.<br><br>
+                            Mas nunca é repetido para sempre, pois você nunca desistiu de nós, então nunca desistirei de você.
+                        </p>
+                    </div>
 
                     <div class="text-slide grand-finale">
                         <h2>Feliz 19 anos!!!</h2>
                         <span class="date">01/12/2006</span>
-                        <p>O dia que minha felicidade nasceu!<br><br>Obrigado por fazer parte de tudo.</p>
+                        <p>
+                            O dia que minha felicidade nasceu!<br><br>
+                            Obrigado por fazer parte de tudo, e por mim, pode fazer isso até pelas próximas vidas.
+                        </p>
                     </div>
                 </div>
+
             </main>
 
             <footer></footer>
             
+            <!-- Player de música atualizado com Diagnóstico -->
             <div class="music-player">
-                <p style="font-size: 12px; margin: 0; color: #333;">Nossa Música 🎵</p>
+                <p id="music-msg" style="font-size: 12px; margin: 0; color: #333;">A Banda que nos Juntou 🎵</p>
+                
                 <audio id="audioPlayer" controls loop>
+                    <!-- TENTE RENOMEAR SEU ARQUIVO PARA: musica.mp3 -->
                     <source src="musica.mp3" type="audio/mpeg" />
+                    <!-- Fallback para o nome anterior -->
+                    <source src="die-with-a-smile.mp3" type="audio/mpeg" />
+                    Seu navegador não suporta áudio.
                 </audio>
-                <button onclick="document.getElementById('audioPlayer').play()" class="play-btn">▶ Play</button>
+                
+                <p id="error-message" class="error-msg">⚠️ Erro: Arquivo de música não encontrado. Verifique se o nome é 'musica.mp3'</p>
+                <button onclick="document.getElementById('audioPlayer').play()" class="play-btn">▶ Play Forçado</button>
             </div>
+
+            <script>
+                // Script simples para detectar erro no carregamento da música
+                const audio = document.getElementById('audioPlayer');
+                const errorMsg = document.getElementById('error-message');
+
+                // Tenta dar play automático (muitos navegadores bloqueiam, mas tentamos)
+                window.addEventListener('click', () => {
+                    if(audio.paused) {
+                        audio.play().catch(e => console.log("Aguardando interação"));
+                    }
+                }, { once: true });
+
+                // Detecta erro na fonte
+                const sources = audio.getElementsByTagName('source');
+                let errorCount = 0;
+
+                for(let src of sources) {
+                    src.addEventListener('error', function() {
+                        errorCount++;
+                        if(errorCount >= sources.length) {
+                            errorMsg.style.display = 'block';
+                            errorMsg.innerText = "⚠️ Música não encontrada na pasta.";
+                        }
+                    });
+                }
+            </script>
         </div>
     </body>
 </html>
